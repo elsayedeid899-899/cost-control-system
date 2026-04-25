@@ -15,7 +15,6 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
-    "@oai/artifact-tool": "latest",
     "express": "^5.2.1",
     "sqlite3": "^5.1.7"
   },
