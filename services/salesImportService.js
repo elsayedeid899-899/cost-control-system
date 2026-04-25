@@ -14,6 +14,7 @@ const TEMPLATE_HEADERS = [
   'unit_price',
   'notes'
 ];
+
 const TEMPLATE_FILE_PATH = path.join(
   __dirname,
   '../public/templates/sales-import-template.xlsx'
@@ -43,46 +44,30 @@ function isRowEmpty(values = []) {
 }
 
 async function parseSalesImportWorkbook({ fileName, base64Content }) {
-  const normalizedName = path.basename(String(fileName || 'sales-import.xlsx'));
-  const tempDir = await fs.mkdtemp(path.join(os.tmpdir(), 'sales-import-'));
-  const tempFilePath = path.join(tempDir, `${randomUUID()}-${normalizedName}`);
-
   try {
-    await fs.writeFile(tempFilePath, Buffer.from(String(base64Content || ''), 'base64'));
+    const buffer = Buffer.from(String(base64Content || ''), 'base64');
 
-    const inputBlob = await FileBlob.load(tempFilePath);
-    let workbook = null;
+    const workbook = XLSX.read(buffer, {
+      type: 'buffer',
+      cellDates: true
+    });
 
-    try {
-      workbook = await SpreadsheetFile.importXlsx(inputBlob);
-    } catch (err) {
-      const parseError = new Error('تعذر قراءة ملف Excel. استخدم القالب المعتمد ثم أعد المحاولة.');
-      parseError.status = 400;
-      throw parseError;
-    }
+    const sheetName = workbook.SheetNames.includes(TEMPLATE_SHEET_NAME)
+      ? TEMPLATE_SHEET_NAME
+      : workbook.SheetNames[0];
 
-    let sheet = null;
-
-    if (typeof workbook.worksheets.getItemOrNullObject === 'function') {
-      sheet = workbook.worksheets.getItemOrNullObject(TEMPLATE_SHEET_NAME);
-    }
+    const sheet = workbook.Sheets[sheetName];
 
     if (!sheet) {
-      try {
-        if (typeof workbook.worksheets.getItem === 'function') {
-          sheet = workbook.worksheets.getItem(TEMPLATE_SHEET_NAME);
-        }
-      } catch (err) {
-        sheet = null;
-      }
+      const error = new Error('ملف الاستيراد فارغ.');
+      error.status = 400;
+      throw error;
     }
 
-    if (!sheet) {
-      sheet = workbook.worksheets.getItemAt(0);
-    }
-
-    const usedRange = sheet.getUsedRange();
-    const values = Array.isArray(usedRange?.values) ? usedRange.values : [];
+    const values = XLSX.utils.sheet_to_json(sheet, {
+      header: 1,
+      defval: ''
+    });
 
     if (!values.length) {
       const error = new Error('ملف الاستيراد فارغ.');
@@ -128,8 +113,14 @@ async function parseSalesImportWorkbook({ fileName, base64Content }) {
     }
 
     return rows;
-  } finally {
-    await fs.rm(tempDir, { recursive: true, force: true }).catch(() => null);
+  } catch (err) {
+    if (err.status) {
+      throw err;
+    }
+
+    const parseError = new Error('تعذر قراءة ملف Excel. استخدم القالب المعتمد ثم أعد المحاولة.');
+    parseError.status = 400;
+    throw parseError;
   }
 }
 
