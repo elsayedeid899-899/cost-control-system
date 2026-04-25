@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>تقارير الموردين وكشف الحساب</title>
+  </head>
+  <body>
+    <section class="card">
+      <h2>فلاتر الموردين</h2>
+      <p class="panel-note">
+        اختر الفترة الزمنية ثم اختر موردًا معينًا إذا أردت عرض كشف الحساب التفصيلي له داخل نفس الشاشة.
+      </p>
+      <div class="compact-form-grid wide">
+        <div>
+          <label for="supplier_id">المورد</label>
+          <select id="supplier_id"></select>
+        </div>
+        <div>
+          <label for="date_from">من تاريخ</label>
+          <input id="date_from" type="date" />
+        </div>
+        <div>
+          <label for="date_to">إلى تاريخ</label>
+          <input id="date_to" type="date" />
+        </div>
+        <div class="filters-inline">
+          <button type="button" onclick="loadSupplierReports()">تحديث التقارير</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>ملخص الموردين</h2>
+      <div class="summary-banner" id="supplierSummaryMetrics"></div>
+    </section>
+
+    <section class="card">
+      <h2>جدول الموردين</h2>
+      <div class="table-shell" id="supplierSummaryTable"></div>
+    </section>
+
+    <section class="card">
+      <h2>كشف حساب المورد</h2>
+      <div id="supplierStatementHeader" class="detail-strip"></div>
+      <div class="table-shell" id="supplierStatementTable"></div>
+    </section>
+
+    <script src="js/supplier-reports.js"></script>
+  </body>
+</html>

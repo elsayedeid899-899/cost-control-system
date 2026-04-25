@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>إعدادات البرنامج</title>
+  </head>
+  <body data-page-key="settings">
+    <section class="card">
+      <h1>المظهر العام وتجربة الاستخدام</h1>
+      <p class="card-section-note">
+        اضبط اسم النظام وكثافة عرض البيانات وحجم الخط والثيم العام الذي يظهر في جميع الشاشات.
+      </p>
+
+      <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));">
+        <div>
+          <label for="businessName">اسم النظام</label>
+          <input id="businessName" placeholder="اسم الشركة أو النشاط" />
+        </div>
+        <div>
+          <label for="density">كثافة العرض</label>
+          <select id="density">
+            <option value="compact">عرض مكثف</option>
+            <option value="comfortable">عرض مريح</option>
+          </select>
+        </div>
+        <div>
+          <label for="fontScale">حجم الخط</label>
+          <input id="fontScale" type="number" min="0.85" max="1.1" step="0.01" />
+        </div>
+        <div>
+          <label for="pdfOrientation">اتجاه PDF</label>
+          <select id="pdfOrientation">
+            <option value="landscape">أفقي</option>
+            <option value="portrait">رأسي</option>
+          </select>
+        </div>
+        <div>
+          <label for="showQuickTips">الإرشادات السريعة</label>
+          <select id="showQuickTips">
+            <option value="true">مفعلة</option>
+            <option value="false">مخفية</option>
+          </select>
+        </div>
+        <div>
+          <label for="pinFilters">تثبيت شريط الفلاتر والتصدير</label>
+          <select id="pinFilters">
+            <option value="true">مفعل</option>
+            <option value="false">غير مفعل</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="saveSettingsButton" type="button" onclick="saveSettings()">حفظ الإعدادات</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>الأمان والتتبع</h2>
+      <p class="card-section-note">
+        هذا الاسم يستخدم كاسم احتياطي في العمليات الآلية والنسخ الاحتياطية إذا لم تكن العملية مرتبطة
+        بمستخدم مسجل الدخول.
+      </p>
+
+      <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));">
+        <div>
+          <label for="operatorName">اسم المشغل الاحتياطي</label>
+          <input id="operatorName" placeholder="مثال: مدير الفرع / الحسابات" />
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>الثيمات الاحترافية</h2>
+      <p class="card-section-note">اختر الثيم المناسب لطبيعة العمل داخل الفروع والإدارة.</p>
+      <div class="theme-grid" id="themeGrid"></div>
+    </section>
+
+    <section class="card">
+      <h2>النسخ الاحتياطي والاستعادة</h2>
+      <p class="card-section-note">
+        يتم حفظ النسخ داخل مجلد <strong>Daily Backup</strong> داخل المشروع. يمكنك تفعيل النسخ اليومية
+        التلقائية أو إنشاء نسخة فورية يدويًا.
+      </p>
+
+      <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));">
+        <div>
+          <label for="dailyBackupEnabled">النسخ اليومي التلقائي</label>
+          <select id="dailyBackupEnabled">
+            <option value="true">مفعل</option>
+            <option value="false">متوقف</option>
+          </select>
+        </div>
+        <div>
+          <label for="dailyBackupTime">وقت النسخة اليومية</label>
+          <input id="dailyBackupTime" type="time" />
+        </div>
+        <div>
+          <label for="keepDays">الاحتفاظ بالنسخ (أيام)</label>
+          <input id="keepDays" type="number" min="1" step="1" />
+        </div>
+      </div>
+
+      <div class="actions">
+        <button type="button" onclick="createBackup()">إنشاء نسخة احتياطية الآن</button>
+        <button class="secondary" type="button" onclick="loadBackups()">تحديث قائمة النسخ</button>
+      </div>
+
+      <div id="backupsTable"></div>
+    </section>
+
+    <section class="card developer-signature-card">
+      <h2>تطوير النظام والمحتوى</h2>
+      <p class="card-section-note">تمت إضافة هذه البيانات داخل الإعدادات وذيل كل الصفحات كما طلبت.</p>
+
+      <div class="developer-signature-grid">
+        <div class="developer-signature-item">
+          <strong>الاسم</strong>
+          <span>Elsayed Eid</span>
+        </div>
+        <div class="developer-signature-item">
+          <strong>رقم التواصل</strong>
+          <a href="tel:01025454555">01025454555</a>
+        </div>
+      </div>
+    </section>
+
+    <script src="/js/settings.js"></script>
+  </body>
+</html>

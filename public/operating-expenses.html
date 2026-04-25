@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>مصروفات التشغيل</title>
+  </head>
+  <body data-page-key="operating-expenses">
+    <section class="card">
+      <h2>فلاتر المتابعة</h2>
+      <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));">
+        <div>
+          <label for="filter_branch_id">الفرع</label>
+          <select id="filter_branch_id"></select>
+        </div>
+        <div>
+          <label for="filter_expense_account_id">حساب المصروف</label>
+          <select id="filter_expense_account_id"></select>
+        </div>
+        <div>
+          <label for="filter_date_from">من تاريخ</label>
+          <input id="filter_date_from" type="date" />
+        </div>
+        <div>
+          <label for="filter_date_to">إلى تاريخ</label>
+          <input id="filter_date_to" type="date" />
+        </div>
+      </div>
+      <div class="actions">
+        <button type="button" onclick="loadOperatingExpenses()">تحديث العرض</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>سند مصروف تشغيل</h2>
+      <input id="operating_expense_id" type="hidden" />
+      <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));">
+        <div>
+          <label for="expense_branch_id">الفرع</label>
+          <select id="expense_branch_id"></select>
+        </div>
+        <div>
+          <label for="expense_account_id">حساب المصروف</label>
+          <select id="expense_account_id"></select>
+        </div>
+        <div>
+          <label for="expense_date">التاريخ</label>
+          <input id="expense_date" type="date" />
+        </div>
+        <div>
+          <label for="expense_amount">المبلغ</label>
+          <input id="expense_amount" type="number" min="0" step="0.01" />
+        </div>
+        <div>
+          <label for="expense_payment_method">طريقة السداد</label>
+          <select id="expense_payment_method">
+            <option value="cash">نقدي</option>
+            <option value="bank">بنك</option>
+            <option value="card">بطاقة</option>
+            <option value="wallet">محفظة</option>
+            <option value="credit">آجل</option>
+            <option value="other">أخرى</option>
+          </select>
+        </div>
+        <div>
+          <label for="expense_beneficiary_name">المستفيد</label>
+          <input id="expense_beneficiary_name" type="text" placeholder="اسم الشخص أو الجهة" />
+        </div>
+      </div>
+      <div class="grid" style="grid-template-columns: minmax(0, 1fr);">
+        <div>
+          <label for="expense_notes">ملاحظات</label>
+          <textarea id="expense_notes" rows="3" placeholder="تفاصيل إضافية"></textarea>
+        </div>
+      </div>
+      <div class="actions">
+        <button type="button" onclick="saveOperatingExpense()">حفظ السند</button>
+        <button class="secondary" type="button" onclick="resetOperatingExpenseForm()">جديد</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>ملخص مصروفات التشغيل</h2>
+      <div class="metric-grid" id="operatingExpenseSummary"></div>
+    </section>
+
+    <section class="card">
+      <h2>سندات المصروفات</h2>
+      <div id="operatingExpensesTable"></div>
+    </section>
+
+    <script src="js/operating-expenses.js"></script>
+  </body>
+</html>

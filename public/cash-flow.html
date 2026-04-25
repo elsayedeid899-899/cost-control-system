@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>قائمة التدفقات النقدية</title>
+  </head>
+  <body>
+    <section class="card">
+      <h2>فلاتر التدفقات النقدية</h2>
+      <div class="compact-form-grid wide">
+        <div>
+          <label for="branch_id">الفرع</label>
+          <select id="branch_id"></select>
+        </div>
+        <div>
+          <label for="date_from">من تاريخ</label>
+          <input id="date_from" type="date" />
+        </div>
+        <div>
+          <label for="date_to">إلى تاريخ</label>
+          <input id="date_to" type="date" />
+        </div>
+        <div class="filters-inline">
+          <button type="button" onclick="loadCashFlow()">تحديث القائمة</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>ملخص التدفقات النقدية</h2>
+      <div class="summary-banner" id="cashFlowSummary"></div>
+    </section>
+
+    <section class="card">
+      <h2>التدفقات من الأنشطة التشغيلية</h2>
+      <div class="table-shell" id="operatingCashFlowTable"></div>
+    </section>
+
+    <section class="card">
+      <h2>التدفقات من الأنشطة الاستثمارية</h2>
+      <div class="table-shell" id="investingCashFlowTable"></div>
+    </section>
+
+    <section class="card">
+      <h2>التدفقات من الأنشطة التمويلية</h2>
+      <div class="table-shell" id="financingCashFlowTable"></div>
+    </section>
+
+    <section class="card">
+      <h2>أرصدة النقدية وما في حكمها</h2>
+      <div class="table-shell" id="cashAccountsTable"></div>
+    </section>
+
+    <section class="card">
+      <h2>مصادر الحركة النقدية</h2>
+      <div class="table-shell" id="cashSourceBreakdownTable"></div>
+    </section>
+
+    <script src="js/cash-flow.js"></script>
+  </body>
+</html>

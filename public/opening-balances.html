@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>رصيد أول المدة</title>
+  </head>
+  <body>
+    <section class="card">
+      <h2>بيانات رصيد أول المدة</h2>
+      <input id="opening_balance_id" type="hidden" />
+      <div class="compact-form-grid wide">
+        <div>
+          <label for="branch_id">الفرع</label>
+          <select id="branch_id"></select>
+        </div>
+        <div>
+          <label for="operation_date">تاريخ الرصيد الافتتاحي</label>
+          <input id="operation_date" type="date" />
+        </div>
+        <div>
+          <label for="notes">ملاحظات</label>
+          <input id="notes" type="text" placeholder="مثال: أرصدة بداية تشغيل النظام" />
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>إضافة خامة إلى الرصيد</h2>
+      <div class="compact-form-grid wide">
+        <div>
+          <label for="raw_material_id">الخامة</label>
+          <select id="raw_material_id"></select>
+        </div>
+        <div>
+          <label for="quantity">الكمية</label>
+          <input id="quantity" type="number" min="0" step="0.01" />
+        </div>
+        <div>
+          <label for="unit_cost">تكلفة الوحدة</label>
+          <input id="unit_cost" type="number" min="0" step="0.01" />
+        </div>
+        <div class="filters-inline">
+          <button type="button" onclick="addOpeningBalanceItem()">إضافة بند</button>
+        </div>
+      </div>
+      <p class="card-section-note">
+        هذه الشاشة مخصصة لإدخال الأرصدة الافتتاحية التي سيبدأ بها النظام داخل كل فرع.
+      </p>
+      <div class="table-shell" id="openingBalanceItemsTable"></div>
+    </section>
+
+    <section class="card">
+      <h2>حفظ الرصيد الافتتاحي</h2>
+      <div class="actions">
+        <button type="button" onclick="saveOpeningBalance()">حفظ رصيد أول المدة</button>
+        <button class="secondary" type="button" onclick="resetOpeningBalanceForm()">جديد</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>الأرصدة الافتتاحية المسجلة</h2>
+      <div class="table-shell" id="openingBalancesTable"></div>
+    </section>
+
+    <script src="js/opening-balances.js"></script>
+  </body>
+</html>

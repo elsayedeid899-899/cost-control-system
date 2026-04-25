@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>قائمة الريسبيات</title>
+  </head>
+  <body>
+    <section class="card recipe-editor">
+      <div class="recipe-header">
+        <div class="recipe-header-copy">
+          <h2>إضافة أو تعديل ريسبي</h2>
+          <p>
+            اختر الصنف أولًا، ثم حدد هل هذه الريسبي عامة لكل الفروع أم مخصصة لفروع معينة. عند وجود ريسبي
+            مخصصة لفرع، سيتم استخدامها بدل الريسبي العامة في البيع والتكلفة داخل هذا الفرع.
+          </p>
+        </div>
+      </div>
+
+      <div class="compact-form-grid wide">
+        <div>
+          <label for="product_id">اسم الصنف</label>
+          <select id="product_id"></select>
+        </div>
+        <div>
+          <label for="product_group_name">التصنيف</label>
+          <input id="product_group_name" class="readonly-field" type="text" placeholder="التصنيف" readonly />
+        </div>
+        <div>
+          <label for="product_sale_price">سعر البيع</label>
+          <input id="product_sale_price" class="readonly-field" type="text" placeholder="0.00" readonly />
+        </div>
+        <div>
+          <label for="recipe_view_branch_id">فرع العرض</label>
+          <select id="recipe_view_branch_id"></select>
+        </div>
+      </div>
+
+      <div class="recipe-kpis" id="recipeProductSnapshot"></div>
+
+      <div>
+        <label>نطاق تطبيق الريسبي</label>
+        <div class="pill-toggle" id="recipeScopeToggle">
+          <label class="is-active">
+            <input id="recipe_scope_all" name="recipe_scope" type="radio" value="all" checked />
+            <span>تطبق على جميع الفروع</span>
+          </label>
+          <label>
+            <input id="recipe_scope_specific" name="recipe_scope" type="radio" value="specific" />
+            <span>تطبق على فروع معينة</span>
+          </label>
+        </div>
+        <div class="muted-inline" style="margin-top: 8px;" id="recipeScopeHint">
+          عند اختيار فروع معينة، سيتم حفظ المكون نفسه على كل الفروع المحددة.
+        </div>
+      </div>
+
+      <div id="recipeSpecificBranchesWrap" class="hidden" style="margin-top: 16px;">
+        <label>الفروع المطبقة</label>
+        <div class="checkbox-grid" id="recipeBranchChecklist"></div>
+      </div>
+
+      <div style="margin-top: 18px;">
+        <h3>مكونات الريسبي</h3>
+        <div class="recipe-component-grid">
+          <div>
+            <label for="item_id">الخامة / المكون</label>
+            <select id="item_id"></select>
+          </div>
+          <div>
+            <label for="item_type">نوع المكون</label>
+            <select id="item_type">
+              <option value="raw">خامة</option>
+              <option value="semi">نصف مصنع</option>
+            </select>
+          </div>
+          <div>
+            <label for="quantity">الكمية</label>
+            <input id="quantity" type="number" min="0" step="0.01" placeholder="0.00" />
+          </div>
+          <div>
+            <label for="selected_item_unit">الوحدة</label>
+            <input id="selected_item_unit" class="readonly-field" type="text" placeholder="الوحدة" readonly />
+          </div>
+          <div>
+            <label for="selected_item_cost">التكلفة</label>
+            <input id="selected_item_cost" class="readonly-field" type="text" placeholder="0.00" readonly />
+          </div>
+          <div>
+            <button id="saveRecipeButton" type="button" onclick="saveRecipeItem()">حفظ مكون الريسبي</button>
+          </div>
+        </div>
+
+        <div class="recipe-actions-row">
+          <button class="secondary" type="button" onclick="resetRecipeForm()">جديد</button>
+          <button class="secondary hidden" id="cancelRecipeEditButton" type="button" onclick="resetRecipeForm()">إلغاء التعديل</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>الريسبي الحالية</h2>
+      <div class="summary-banner" id="recipeTableSummary"></div>
+      <div class="table-shell" id="recipesTable"></div>
+    </section>
+
+    <script src="js/recipes.js"></script>
+  </body>
+</html>

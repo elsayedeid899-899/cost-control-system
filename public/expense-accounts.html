@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>دليل مصروفات التشغيل</title>
+  </head>
+  <body>
+    <section class="card">
+      <h2>تكويد حسابات المصروفات</h2>
+      <p class="card-section-note">
+        هذه الحسابات ستستخدم لاحقًا في توزيع المصروفات على المنتجات داخل الفرع وفي بناء قائمة
+        الدخل.
+      </p>
+      <input id="expense_account_id" type="hidden" />
+      <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));">
+        <div>
+          <label for="account_name">اسم الحساب</label>
+          <input id="account_name" type="text" placeholder="مثال: إيجار الفرع" />
+        </div>
+        <div>
+          <label for="account_category">فئة المصروف</label>
+          <select id="account_category">
+            <option value="general">عام</option>
+            <option value="payroll">رواتب وأجور</option>
+            <option value="occupancy">إيجارات وإشغال</option>
+            <option value="utilities">مرافق وخدمات</option>
+            <option value="marketing">تسويق</option>
+            <option value="maintenance">صيانة</option>
+            <option value="delivery">توصيل</option>
+            <option value="admin">إداري</option>
+            <option value="other">أخرى</option>
+          </select>
+        </div>
+        <div>
+          <label for="allocation_basis">أساس التوزيع</label>
+          <select id="allocation_basis">
+            <option value="sales">على المبيعات</option>
+            <option value="quantity">على الكميات</option>
+            <option value="equal">بالتساوي</option>
+            <option value="manual">يدوي</option>
+          </select>
+        </div>
+        <div>
+          <label for="account_is_active">الحالة</label>
+          <select id="account_is_active">
+            <option value="1">نشط</option>
+            <option value="0">موقوف</option>
+          </select>
+        </div>
+      </div>
+      <div class="grid" style="grid-template-columns: minmax(0, 1fr) auto auto;">
+        <div>
+          <label for="account_notes">ملاحظات</label>
+          <textarea id="account_notes" rows="3" placeholder="ملاحظات إضافية"></textarea>
+        </div>
+        <button type="button" onclick="saveExpenseAccount()">حفظ الحساب</button>
+        <button class="secondary" type="button" onclick="resetExpenseAccountForm()">جديد</button>
+      </div>
+      <div class="card-inline-actions">
+        <button class="ghost" type="button" onclick="openManualAllocationRules()">
+          إدارة التوزيع اليدوي
+        </button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>ملخص الحسابات</h2>
+      <div class="metric-grid" id="expenseAccountSummary"></div>
+    </section>
+
+    <section class="card">
+      <h2>دليل حسابات المصروفات</h2>
+      <div id="expenseAccountsTable"></div>
+    </section>
+
+    <script src="js/expense-accounts.js"></script>
+  </body>
+</html>

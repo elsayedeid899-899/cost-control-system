@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>لوحة الإدارة التنفيذية</title>
+  </head>
+  <body>
+    <section class="dashboard-stage">
+      <section class="dashboard-masthead-grid">
+        <div class="card dashboard-story-card" id="dashboardSpotlight"></div>
+
+        <div class="card dashboard-filter-shell">
+          <h2>فلاتر الداشبورد</h2>
+          <p class="card-section-note">
+            اختر الفرع والفترة الزمنية للحصول على نفس النتائج والتحليلات، لكن بعرض تنفيذي أوضح
+            وأسهل في القراءة.
+          </p>
+
+          <div class="dashboard-filter-grid">
+            <div>
+              <label for="branch_id">الفرع</label>
+              <select id="branch_id"></select>
+            </div>
+            <div>
+              <label for="date_from">من تاريخ</label>
+              <input id="date_from" type="date" />
+            </div>
+            <div>
+              <label for="date_to">إلى تاريخ</label>
+              <input id="date_to" type="date" />
+            </div>
+            <button type="button" onclick="loadDashboard()">تحديث المؤشرات</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="dashboard-metrics-grid" id="dashboardMetrics"></section>
+
+      <section class="dashboard-board-grid dashboard-board-grid--split">
+        <div class="card dashboard-surface">
+          <div class="dashboard-section-heading">
+            <div>
+              <h2>توزيع مصروفات التشغيل</h2>
+              <p>يوضح ما تم تحميله على المنتجات داخل كل فرع مقابل الجزء غير الموزع الذي يحتاج مراجعة.</p>
+            </div>
+            <span class="dashboard-section-pill">تحميل</span>
+          </div>
+          <div id="allocationBoard"></div>
+        </div>
+
+        <div class="card dashboard-surface">
+          <div class="dashboard-section-heading">
+            <div>
+              <h2>فئات المصروفات</h2>
+              <p>ملخص سريع لإجمالي كل فئة وما تم تحميله منها خلال الفترة المحددة.</p>
+            </div>
+            <span class="dashboard-section-pill">تصنيف</span>
+          </div>
+          <div id="expenseCategoryBoard"></div>
+        </div>
+      </section>
+
+      <section class="dashboard-board-grid dashboard-board-grid--split">
+        <div class="card dashboard-surface">
+          <div class="dashboard-section-heading">
+            <div>
+              <h2>أداء الفروع</h2>
+              <p>مقارنة الفروع حسب المبيعات والربحية وصافي النتيجة بعد المصروفات.</p>
+            </div>
+            <span class="dashboard-section-pill">فروع</span>
+          </div>
+          <div id="branchPerformanceBoard"></div>
+        </div>
+
+        <div class="card dashboard-surface">
+          <div class="dashboard-section-heading">
+            <div>
+              <h2>اتجاه الربحية اليومية</h2>
+              <p>تتبع يومي للمبيعات ومجمل الربح وصافي النتيجة بعد التشغيل.</p>
+            </div>
+            <span class="dashboard-section-pill">اتجاه</span>
+          </div>
+          <div id="trendBoard"></div>
+        </div>
+      </section>
+
+      <section class="dashboard-board-grid dashboard-board-grid--single">
+        <div class="card dashboard-surface">
+          <div class="dashboard-section-heading">
+            <div>
+              <h2>أعلى المنتجات مبيعًا</h2>
+              <p>المنتجات الأكثر مساهمة في المبيعات والربح خلال الفترة.</p>
+            </div>
+            <span class="dashboard-section-pill">منتجات</span>
+          </div>
+          <div id="topProductsBoard"></div>
+        </div>
+      </section>
+
+      <section class="dashboard-board-grid dashboard-board-grid--split">
+        <div class="card dashboard-surface">
+          <div class="dashboard-section-heading">
+            <div>
+              <h2>قيمة المخزون حسب الفرع</h2>
+              <p>صورة سريعة عن رأس المال المخزني الحالي على مستوى الفروع.</p>
+            </div>
+            <span class="dashboard-section-pill">مخزون</span>
+          </div>
+          <div id="stockByBranchBoard"></div>
+        </div>
+
+        <div class="card dashboard-surface">
+          <div class="dashboard-section-heading">
+            <div>
+              <h2>تنبيهات الحد الأدنى</h2>
+              <p>أصناف وصلت للحد الأدنى أو اقتربت من النفاد داخل الفروع.</p>
+            </div>
+            <span class="dashboard-section-pill">تنبيهات</span>
+          </div>
+          <div id="lowStockBoard"></div>
+        </div>
+      </section>
+    </section>
+
+    <script src="/js/dashboard.js"></script>
+  </body>
+</html>

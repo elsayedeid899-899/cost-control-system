@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>فواتير البيع</title>
+  </head>
+  <body data-page-key="sales">
+    <section class="card">
+      <h1 id="salesFormTitle">فاتورة بيع</h1>
+      <p class="card-section-note" id="salesInvoiceHint"></p>
+
+      <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));">
+        <div>
+          <label for="branch_id">الفرع</label>
+          <select id="branch_id"></select>
+        </div>
+        <div>
+          <label for="invoice_type">نوع العملية</label>
+          <select id="invoice_type">
+            <option value="sale">بيع</option>
+            <option value="hospitality">ضيافة</option>
+            <option value="void">Void</option>
+          </select>
+        </div>
+        <div id="paymentMethodWrapper">
+          <label for="payment_method">طريقة السداد</label>
+          <select id="payment_method">
+            <option value="cash">نقدي</option>
+            <option value="bank">بنك</option>
+            <option value="card">بطاقة</option>
+            <option value="wallet">محفظة</option>
+            <option value="credit">آجل</option>
+            <option value="other">أخرى</option>
+          </select>
+        </div>
+        <div>
+          <label for="invoice_date">التاريخ</label>
+          <input id="invoice_date" type="date" />
+        </div>
+        <div>
+          <label for="notes">ملاحظات</label>
+          <input id="notes" placeholder="ملاحظات على الفاتورة" />
+        </div>
+      </div>
+
+      <div class="grid hidden" id="beneficiaryWrapper" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+        <div>
+          <label for="beneficiary_name">اسم المستفيد من الضيافة</label>
+          <input id="beneficiary_name" placeholder="اسم المستفيد" />
+        </div>
+      </div>
+
+      <div class="grid" style="grid-template-columns: minmax(220px, 2fr) 1fr 1fr auto;">
+        <div>
+          <label for="product_id">الصنف</label>
+          <select id="product_id"></select>
+        </div>
+        <div>
+          <label for="quantity">الكمية</label>
+          <input id="quantity" type="number" min="0" step="0.01" placeholder="0.00" />
+        </div>
+        <div>
+          <label for="unit_price">سعر البيع</label>
+          <input id="unit_price" type="number" min="0" step="0.01" placeholder="0.00" />
+        </div>
+        <div style="align-self: end;">
+          <button class="secondary" type="button" onclick="addSalesItem()">إضافة بند</button>
+        </div>
+      </div>
+
+      <div id="salesItemsTable"></div>
+
+      <div class="actions">
+        <button id="saveSalesButton" type="button" onclick="saveSalesInvoice()">حفظ الفاتورة</button>
+        <button id="cancelSalesEditButton" class="secondary hidden" type="button" onclick="resetSalesForm()">
+          إلغاء التعديل
+        </button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>استيراد المبيعات من Excel</h2>
+      <p class="card-section-note">
+        استخدم القالب الثابت لرفع المبيعات دفعة واحدة. يتم تجميع الصفوف تلقائيًا حسب
+        <strong>invoice_ref</strong>.
+      </p>
+
+      <div class="actions">
+        <button class="secondary" type="button" onclick="window.location.href='/templates/sales-import-template.xlsx'">
+          تنزيل قالب الاستيراد
+        </button>
+      </div>
+
+      <div class="grid" style="grid-template-columns: minmax(0, 1fr) auto;">
+        <div>
+          <label for="salesImportFile">ملف Excel</label>
+          <input id="salesImportFile" type="file" accept=".xlsx" />
+        </div>
+        <div style="align-self: end;">
+          <button type="button" onclick="importSalesWorkbook()">رفع واستيراد الملف</button>
+        </div>
+      </div>
+
+      <div id="salesImportResult" class="card-section-note"></div>
+    </section>
+
+    <section class="card">
+      <h2>فواتير البيع المسجلة</h2>
+      <div id="salesInvoicesTable"></div>
+    </section>
+
+    <div class="modal" id="salesDetailsModal">
+      <div class="modal-card" style="max-width: 1100px;">
+        <div class="modal-header">
+          <h2>تفاصيل الفاتورة</h2>
+          <button class="secondary" type="button" onclick="closeSalesDetails()">إغلاق</button>
+        </div>
+        <div class="summary-grid" id="salesDetailsSummary"></div>
+        <div id="salesDetailsTable"></div>
+      </div>
+    </div>
+
+    <script src="js/sales.js"></script>
+  </body>
+</html>

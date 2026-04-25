@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>دليل الحسابات</title>
+  </head>
+  <body>
+    <section class="card">
+      <h2>فلاتر دليل الحسابات</h2>
+      <div class="compact-form-grid wide">
+        <div>
+          <label for="account_search">بحث سريع</label>
+          <input id="account_search" type="text" placeholder="ابحث بالكود أو اسم الحساب" />
+        </div>
+        <div>
+          <label for="account_type_filter">نوع الحساب</label>
+          <select id="account_type_filter">
+            <option value="">كل الأنواع</option>
+            <option value="asset">أصول</option>
+            <option value="liability">التزامات</option>
+            <option value="equity">حقوق ملكية</option>
+            <option value="revenue">إيرادات</option>
+            <option value="expense">مصروفات</option>
+          </select>
+        </div>
+        <div>
+          <label for="account_status_filter">الحالة</label>
+          <select id="account_status_filter">
+            <option value="">كل الحالات</option>
+            <option value="1">نشط</option>
+            <option value="0">موقوف</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>ملخص الدليل</h2>
+      <div class="summary-banner" id="chartAccountsSummary"></div>
+    </section>
+
+    <section class="card">
+      <h2>الحسابات</h2>
+      <div class="table-shell" id="chartAccountsTable"></div>
+    </section>
+
+    <script src="js/chart-of-accounts.js"></script>
+  </body>
+</html>

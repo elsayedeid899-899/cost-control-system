@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>قواعد التوزيع اليدوي للمصروفات</title>
+  </head>
+  <body>
+    <section class="card">
+      <h2>فلاتر قواعد التوزيع اليدوي</h2>
+      <p class="card-section-note">
+        استخدم هذه الشاشة لتحديد وزن تحميل المصروف اليدوي على المنتجات داخل كل فرع.
+      </p>
+      <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));">
+        <div>
+          <label for="rule_expense_account_id">حساب المصروف اليدوي</label>
+          <select id="rule_expense_account_id"></select>
+        </div>
+        <div>
+          <label for="rule_branch_id">الفرع</label>
+          <select id="rule_branch_id"></select>
+        </div>
+        <button type="button" onclick="loadAllocationRules()">تحميل القواعد</button>
+        <button class="secondary" type="button" onclick="fillEqualWeights()">توزيع متساوٍ</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>ملخص التوزيع اليدوي</h2>
+      <div class="metric-grid" id="allocationRulesSummary"></div>
+    </section>
+
+    <section class="card">
+      <h2>أوزان تحميل المصروف على المنتجات</h2>
+      <div id="allocationRulesTable"></div>
+      <div class="card-inline-actions">
+        <button type="button" onclick="saveAllocationRules()">حفظ قواعد التوزيع</button>
+      </div>
+    </section>
+
+    <script src="js/expense-allocation-rules.js"></script>
+  </body>
+</html>

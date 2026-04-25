@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>الجرد الفعلي</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background: #f4f6f9;
+        padding: 30px;
+      }
+
+      .card {
+        background: white;
+        border-radius: 14px;
+        padding: 24px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        margin-bottom: 24px;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+        margin-bottom: 18px;
+        align-items: end;
+      }
+
+      input,
+      select,
+      textarea {
+        padding: 12px;
+        border: 1px solid #cbd5e1;
+        border-radius: 8px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      textarea {
+        min-height: 90px;
+      }
+
+      button {
+        background: #243b53;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h2>إنشاء جلسة جرد فعلي</h2>
+      <div class="grid">
+        <select id="branch_id"></select>
+        <input id="count_date" type="date" />
+        <button onclick="loadCountTemplate()">تحميل نموذج الجرد</button>
+        <button onclick="saveStockCount()">حفظ جلسة الجرد</button>
+      </div>
+      <textarea id="notes" placeholder="ملاحظات الجرد"></textarea>
+    </div>
+
+    <div class="card">
+      <h2>بنود الجرد</h2>
+      <div id="stockCountTemplateTable"></div>
+    </div>
+
+    <div class="card">
+      <h2>جلسات الجرد السابقة</h2>
+      <div id="stockCountsTable"></div>
+    </div>
+
+    <script src="js/stock-counts.js"></script>
+  </body>
+</html>

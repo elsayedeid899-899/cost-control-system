@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>المستخدمون</title>
+  </head>
+  <body data-page-key="users">
+    <section class="card">
+      <h2>إدارة المستخدمين</h2>
+      <p class="card-section-note">
+        هذه الشاشة متاحة لمدير النظام فقط. يمكنك إضافة مستخدمين جدد أو تعديل الاسم المعروض والدور
+        وحالة التفعيل وكلمة المرور.
+      </p>
+
+      <input id="user_id" type="hidden" />
+      <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));">
+        <div>
+          <label for="display_name">الاسم المعروض</label>
+          <input id="display_name" type="text" />
+        </div>
+        <div>
+          <label for="username">اسم المستخدم</label>
+          <input id="username" type="text" />
+        </div>
+        <div>
+          <label for="role">الدور</label>
+          <select id="role">
+            <option value="admin">مدير النظام</option>
+            <option value="manager">مدير</option>
+            <option value="accounts">حسابات</option>
+            <option value="inventory">مخزن</option>
+            <option value="cashier">كاشير</option>
+          </select>
+        </div>
+        <div>
+          <label for="is_active">الحالة</label>
+          <select id="is_active">
+            <option value="true">مفعل</option>
+            <option value="false">غير مفعل</option>
+          </select>
+        </div>
+        <div>
+          <label for="password">كلمة المرور</label>
+          <input id="password" type="password" placeholder="اتركها فارغة إذا لم ترد التغيير" />
+        </div>
+      </div>
+
+      <div class="actions">
+        <button type="button" onclick="saveUser()">حفظ المستخدم</button>
+        <button class="secondary" type="button" onclick="resetUserForm()">جديد</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>قائمة المستخدمين</h2>
+      <div id="usersTable"></div>
+    </section>
+
+    <script src="/js/users.js"></script>
+  </body>
+</html>

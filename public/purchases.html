@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>فواتير الشراء</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background: #f4f6f9;
+        padding: 30px;
+        color: #1f2937;
+      }
+
+      .top-link {
+        display: inline-block;
+        margin-bottom: 16px;
+        color: #243b53;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 20px;
+      }
+
+      .card {
+        background: white;
+        border-radius: 14px;
+        padding: 24px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        margin-bottom: 24px;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+        margin-bottom: 18px;
+        align-items: center;
+      }
+
+      input,
+      select {
+        padding: 12px;
+        border: 1px solid #cbd5e1;
+        border-radius: 8px;
+        width: 100%;
+        box-sizing: border-box;
+        font-size: 18px;
+      }
+
+      button {
+        background: #243b53;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 8px;
+        font-size: 18px;
+        cursor: pointer;
+      }
+
+      .secondary {
+        background: #486581;
+      }
+
+      .danger {
+        background: #c0392b;
+      }
+
+      .ghost {
+        background: #d9e2ec;
+        color: #243b53;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      th,
+      td {
+        border: 1px solid #d9e2ec;
+        padding: 12px;
+        text-align: center;
+        font-size: 17px;
+      }
+
+      th {
+        background: #243b53;
+        color: white;
+      }
+
+      .total {
+        margin-top: 14px;
+        font-size: 22px;
+        font-weight: bold;
+        color: #102a43;
+      }
+
+      .actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 16px;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      .modal {
+        position: fixed;
+        inset: 0;
+        background: rgba(15, 23, 42, 0.55);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        z-index: 1000;
+      }
+
+      .modal.open {
+        display: flex;
+      }
+
+      .modal-card {
+        width: min(1100px, 100%);
+        max-height: 90vh;
+        overflow: auto;
+        background: white;
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: 0 20px 40px rgba(15, 23, 42, 0.25);
+      }
+
+      .modal-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 16px;
+      }
+
+      .summary-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        margin-bottom: 18px;
+      }
+
+      .summary-item {
+        background: #f8fafc;
+        border: 1px solid #d9e2ec;
+        border-radius: 12px;
+        padding: 12px;
+      }
+
+      .summary-item strong {
+        display: block;
+        color: #102a43;
+        margin-bottom: 6px;
+      }
+
+      @media (max-width: 1000px) {
+        .grid,
+        .summary-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="top-link" href="index.html">الرجوع للرئيسية</a>
+
+    <div class="card">
+      <h1 id="purchaseFormTitle">فاتورة شراء</h1>
+
+      <div class="grid">
+        <select id="branch_id"></select>
+        <select id="supplier_id"></select>
+        <input id="invoice_date" type="date" />
+        <input id="notes" placeholder="ملاحظات" />
+      </div>
+
+      <div class="grid">
+        <select id="raw_material_id"></select>
+        <input id="quantity" type="number" step="0.01" placeholder="الكمية" />
+        <input id="unit_cost" type="number" step="0.01" placeholder="تكلفة الوحدة" />
+        <button class="secondary" onclick="addPurchaseItem()">إضافة بند</button>
+      </div>
+
+      <div id="purchaseItemsTable"></div>
+
+      <div class="actions">
+        <button id="savePurchaseButton" onclick="savePurchaseInvoice()">حفظ الفاتورة</button>
+        <button id="cancelPurchaseEditButton" class="ghost hidden" onclick="resetPurchaseForm()">
+          إلغاء التعديل
+        </button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>آخر فواتير الشراء</h2>
+      <div id="purchaseInvoicesTable"></div>
+    </div>
+
+    <div class="modal" id="purchaseDetailsModal">
+      <div class="modal-card">
+        <div class="modal-header">
+          <h2>تفاصيل الفاتورة</h2>
+          <button class="ghost" onclick="closePurchaseDetails()">إغلاق</button>
+        </div>
+        <div class="summary-grid" id="purchaseDetailsSummary"></div>
+        <div id="purchaseDetailsTable"></div>
+      </div>
+    </div>
+
+    <script src="js/purchases.js"></script>
+  </body>
+</html>

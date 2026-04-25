@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>قائمة الدخل</title>
+  </head>
+  <body>
+    <section class="card">
+      <h2>فلاتر قائمة الدخل</h2>
+      <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));">
+        <div>
+          <label for="branch_id">الفرع</label>
+          <select id="branch_id"></select>
+        </div>
+        <div>
+          <label for="date_from">من تاريخ</label>
+          <input id="date_from" type="date" />
+        </div>
+        <div>
+          <label for="date_to">إلى تاريخ</label>
+          <input id="date_to" type="date" />
+        </div>
+        <button type="button" onclick="loadIncomeStatement()">تحديث القائمة</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>مؤشرات الربحية</h2>
+      <div class="metric-grid" id="incomeMetrics"></div>
+    </section>
+
+    <section class="card">
+      <h2>قائمة الدخل</h2>
+      <div id="incomeStatementTable"></div>
+    </section>
+
+    <section class="card">
+      <h2>ربحية الفروع</h2>
+      <div id="incomeBranchesTable"></div>
+    </section>
+
+    <section class="card">
+      <h2>تحليل توزيع مصروفات التشغيل</h2>
+      <div id="incomeExpenseCategoriesTable"></div>
+    </section>
+
+    <script src="js/income-statement.js"></script>
+  </body>
+</html>

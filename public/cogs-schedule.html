@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>قائمة تكلفة البضاعة المباعة</title>
+  </head>
+  <body>
+    <section class="card">
+      <h2>فلاتر قائمة التكلفة</h2>
+      <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));">
+        <div>
+          <label for="branch_id">الفرع</label>
+          <select id="branch_id"></select>
+        </div>
+        <div>
+          <label for="date_from">من تاريخ</label>
+          <input id="date_from" type="date" />
+        </div>
+        <div>
+          <label for="date_to">إلى تاريخ</label>
+          <input id="date_to" type="date" />
+        </div>
+        <button type="button" onclick="loadCogsSchedule()">تحديث القائمة</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>مؤشرات قائمة التكلفة</h2>
+      <div class="metric-grid" id="cogsMetrics"></div>
+    </section>
+
+    <section class="card">
+      <h2>قائمة تكلفة البضاعة المباعة</h2>
+      <p class="card-section-note">
+        القائمة التالية تُظهر كيف تحركت تكلفة المخزون حتى وصلت إلى تكلفة البضاعة المباعة الفعلية.
+      </p>
+      <div id="cogsStatementTable"></div>
+    </section>
+
+    <section class="card">
+      <h2>ملخص الفروع</h2>
+      <div id="cogsBranchTable"></div>
+    </section>
+
+    <script src="js/cogs-schedule.js"></script>
+  </body>
+</html>

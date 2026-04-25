@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>سداد الموردين</title>
+  </head>
+  <body data-page-key="supplier-payments">
+    <section class="card">
+      <h2>فلاتر المتابعة</h2>
+      <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));">
+        <div>
+          <label for="filter_branch_id">الفرع</label>
+          <select id="filter_branch_id"></select>
+        </div>
+        <div>
+          <label for="filter_supplier_id">المورد</label>
+          <select id="filter_supplier_id"></select>
+        </div>
+        <div>
+          <label for="filter_treasury_id">الخزينة / البنك</label>
+          <select id="filter_treasury_id"></select>
+        </div>
+        <div>
+          <label for="filter_date_from">من تاريخ</label>
+          <input id="filter_date_from" type="date" />
+        </div>
+        <div>
+          <label for="filter_date_to">إلى تاريخ</label>
+          <input id="filter_date_to" type="date" />
+        </div>
+      </div>
+      <div class="actions">
+        <button type="button" onclick="loadSupplierPayments()">تحديث العرض</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>سند سداد مورد</h2>
+      <input id="supplier_payment_id" type="hidden" />
+      <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));">
+        <div>
+          <label for="payment_branch_id">الفرع</label>
+          <select id="payment_branch_id"></select>
+        </div>
+        <div>
+          <label for="payment_supplier_id">المورد</label>
+          <select id="payment_supplier_id"></select>
+        </div>
+        <div>
+          <label for="payment_treasury_id">الخزينة / البنك</label>
+          <select id="payment_treasury_id"></select>
+        </div>
+        <div>
+          <label for="payment_date">التاريخ</label>
+          <input id="payment_date" type="date" />
+        </div>
+        <div>
+          <label for="payment_amount">المبلغ</label>
+          <input id="payment_amount" type="number" min="0" step="0.01" />
+        </div>
+      </div>
+      <div class="grid" style="grid-template-columns: minmax(0, 1fr);">
+        <div>
+          <label for="payment_notes">ملاحظات</label>
+          <textarea id="payment_notes" rows="3" placeholder="تفاصيل إضافية عن السداد"></textarea>
+        </div>
+      </div>
+      <div class="actions">
+        <button type="button" onclick="saveSupplierPayment()">حفظ السند</button>
+        <button class="secondary" type="button" onclick="resetSupplierPaymentForm()">جديد</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>ملخص سندات السداد</h2>
+      <div class="metric-grid" id="supplierPaymentSummary"></div>
+    </section>
+
+    <section class="card">
+      <h2>سندات سداد الموردين</h2>
+      <div id="supplierPaymentsTable"></div>
+    </section>
+
+    <script src="js/supplier-payments.js"></script>
+  </body>
+</html>

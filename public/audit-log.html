@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>سجل المراجعة</title>
+  </head>
+  <body data-page-key="audit-log">
+    <section class="card">
+      <h2>فلاتر سجل المراجعة</h2>
+      <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));">
+        <div>
+          <label for="audit_entity_type">نوع الكيان</label>
+          <input id="audit_entity_type" type="text" placeholder="مثال: sales_invoice" />
+        </div>
+        <div>
+          <label for="audit_action_type">نوع العملية</label>
+          <select id="audit_action_type">
+            <option value="">كل العمليات</option>
+            <option value="create">إنشاء</option>
+            <option value="update">تعديل</option>
+            <option value="delete">حذف</option>
+            <option value="import">استيراد</option>
+            <option value="login">تسجيل دخول</option>
+            <option value="logout">تسجيل خروج</option>
+            <option value="backup_manual">نسخة يدوية</option>
+            <option value="backup_auto">نسخة يومية</option>
+            <option value="restore">استعادة</option>
+            <option value="settings_update">تعديل إعدادات</option>
+          </select>
+        </div>
+        <div>
+          <label for="audit_actor_name">اسم المستخدم</label>
+          <input id="audit_actor_name" type="text" placeholder="المستخدم أو المشغل" />
+        </div>
+        <div>
+          <label for="audit_date_from">من تاريخ</label>
+          <input id="audit_date_from" type="date" />
+        </div>
+        <div>
+          <label for="audit_date_to">إلى تاريخ</label>
+          <input id="audit_date_to" type="date" />
+        </div>
+        <div>
+          <label for="audit_limit">عدد السجلات</label>
+          <input id="audit_limit" type="number" min="1" max="1000" step="1" value="200" />
+        </div>
+      </div>
+      <div class="actions">
+        <button type="button" onclick="loadAuditLogs()">تحديث السجل</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>نتائج سجل المراجعة</h2>
+      <div id="auditLogSummary" class="card-section-note"></div>
+      <div id="auditLogsTable"></div>
+    </section>
+
+    <div class="modal" id="auditLogModal">
+      <div class="modal-card" style="max-width: 1080px;">
+        <div class="modal-header">
+          <h2>تفاصيل سجل المراجعة</h2>
+          <button class="secondary" type="button" onclick="closeAuditLogDetails()">إغلاق</button>
+        </div>
+        <div class="summary-grid" id="auditLogDetailsSummary"></div>
+        <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+          <div class="summary-item">
+            <strong>قبل التعديل</strong>
+            <pre id="auditLogBefore" style="white-space: pre-wrap; margin: 0;"></pre>
+          </div>
+          <div class="summary-item">
+            <strong>بعد التعديل</strong>
+            <pre id="auditLogAfter" style="white-space: pre-wrap; margin: 0;"></pre>
+          </div>
+          <div class="summary-item">
+            <strong>بيانات إضافية</strong>
+            <pre id="auditLogMeta" style="white-space: pre-wrap; margin: 0;"></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="/js/audit-log.js"></script>
+  </body>
+</html>

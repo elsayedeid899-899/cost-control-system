@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>تكاليف المنتجات</title>
+  </head>
+  <body>
+    <section class="card">
+      <h2>فلاتر تكلفة المنتجات</h2>
+      <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));">
+        <div>
+          <label for="branch_id">الفرع</label>
+          <select id="branch_id"></select>
+        </div>
+        <div>
+          <label for="date_from">من تاريخ</label>
+          <input id="date_from" type="date" />
+        </div>
+        <div>
+          <label for="date_to">إلى تاريخ</label>
+          <input id="date_to" type="date" />
+        </div>
+        <div>
+          <label for="product_id">تفصيل المنتج</label>
+          <select id="product_id"></select>
+        </div>
+        <button type="button" onclick="loadProductCosts()">تحديث ملخص التكلفة</button>
+        <button type="button" class="secondary" onclick="loadProductCostDetail()">تحميل تفاصيل المنتج</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>مؤشرات تكلفة المنتجات</h2>
+      <div class="metric-grid" id="productCostSummary"></div>
+    </section>
+
+    <section class="card">
+      <h2>ملخص تكاليف المنتجات</h2>
+      <div id="productCostsTable"></div>
+    </section>
+
+    <section class="card">
+      <h2>تفصيل تكلفة المنتج</h2>
+      <div class="metric-grid" id="productCostMetrics"></div>
+      <div id="productCostLines"></div>
+      <div id="productCostExpenseBreakdown"></div>
+      <div id="productCostExpenseAccounts"></div>
+    </section>
+
+    <script src="js/product-costs.js"></script>
+  </body>
+</html>

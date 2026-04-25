@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>الخزائن والبنوك</title>
+  </head>
+  <body data-page-key="treasuries">
+    <section class="card">
+      <h2>فلاتر المتابعة</h2>
+      <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));">
+        <div>
+          <label for="filter_branch_id">الفرع</label>
+          <select id="filter_branch_id"></select>
+        </div>
+        <div>
+          <label for="filter_treasury_type">النوع</label>
+          <select id="filter_treasury_type">
+            <option value="">كل الأنواع</option>
+            <option value="cash">خزينة نقدية</option>
+            <option value="bank">بنك</option>
+            <option value="wallet">محفظة إلكترونية</option>
+            <option value="other">أخرى</option>
+          </select>
+        </div>
+        <div>
+          <label for="filter_is_active">الحالة</label>
+          <select id="filter_is_active">
+            <option value="">كل الحالات</option>
+            <option value="1">نشط</option>
+            <option value="0">موقوف</option>
+          </select>
+        </div>
+      </div>
+      <div class="actions">
+        <button type="button" onclick="loadTreasuries()">تحديث العرض</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>تعريف خزينة / بنك</h2>
+      <input id="treasury_id" type="hidden" />
+      <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));">
+        <div>
+          <label for="treasury_name">الاسم</label>
+          <input id="treasury_name" type="text" placeholder="اسم الخزينة أو البنك" />
+        </div>
+        <div>
+          <label for="treasury_branch_id">الفرع</label>
+          <select id="treasury_branch_id"></select>
+        </div>
+        <div>
+          <label for="treasury_type">النوع</label>
+          <select id="treasury_type">
+            <option value="cash">خزينة نقدية</option>
+            <option value="bank">بنك</option>
+            <option value="wallet">محفظة إلكترونية</option>
+            <option value="other">أخرى</option>
+          </select>
+        </div>
+        <div>
+          <label for="treasury_account_code">الحساب المحاسبي</label>
+          <select id="treasury_account_code"></select>
+        </div>
+        <div>
+          <label for="treasury_opening_balance">الرصيد الافتتاحي</label>
+          <input id="treasury_opening_balance" type="number" min="0" step="0.01" />
+        </div>
+        <div>
+          <label for="treasury_is_active">الحالة</label>
+          <select id="treasury_is_active">
+            <option value="1">نشط</option>
+            <option value="0">موقوف</option>
+          </select>
+        </div>
+      </div>
+      <div class="grid" style="grid-template-columns: minmax(0, 1fr);">
+        <div>
+          <label for="treasury_notes">ملاحظات</label>
+          <textarea id="treasury_notes" rows="3" placeholder="بيانات إضافية عن الخزينة أو البنك"></textarea>
+        </div>
+      </div>
+      <div class="actions">
+        <button type="button" onclick="saveTreasury()">حفظ الخزينة</button>
+        <button class="secondary" type="button" onclick="resetTreasuryForm()">جديد</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>ملخص الخزائن والبنوك</h2>
+      <div class="metric-grid" id="treasurySummary"></div>
+    </section>
+
+    <section class="card">
+      <h2>قائمة الخزائن والبنوك</h2>
+      <div id="treasuriesTable"></div>
+    </section>
+
+    <script src="js/treasuries.js"></script>
+  </body>
+</html>

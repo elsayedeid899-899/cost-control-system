@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>دفتر اليومية</title>
+  </head>
+  <body>
+    <section class="card">
+      <h2>فلاتر دفتر اليومية</h2>
+      <div class="compact-form-grid wide">
+        <div>
+          <label for="branch_id">الفرع</label>
+          <select id="branch_id"></select>
+        </div>
+        <div>
+          <label for="source_type">مصدر القيد</label>
+          <select id="source_type">
+            <option value="">كل المصادر</option>
+            <option value="purchase_invoice">فواتير الشراء</option>
+            <option value="sales_invoice">فواتير البيع</option>
+            <option value="hospitality_invoice">الضيافة</option>
+            <option value="operating_expense">مصروفات التشغيل</option>
+            <option value="supplier_payment">سداد الموردين</option>
+            <option value="stock_operation">العمليات المخزنية</option>
+          </select>
+        </div>
+        <div>
+          <label for="date_from">من تاريخ</label>
+          <input id="date_from" type="date" />
+        </div>
+        <div>
+          <label for="date_to">إلى تاريخ</label>
+          <input id="date_to" type="date" />
+        </div>
+        <div class="filters-inline">
+          <button type="button" onclick="loadJournalEntries()">تحديث اليومية</button>
+          <button class="secondary" type="button" onclick="rebuildJournalEntries()">إعادة بناء القيود</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>ملخص اليومية</h2>
+      <div class="summary-banner" id="journalSummary"></div>
+    </section>
+
+    <section class="card">
+      <h2>القيود اليومية</h2>
+      <div class="table-shell" id="journalEntriesTable"></div>
+    </section>
+
+    <section class="card">
+      <h2>تفاصيل القيد</h2>
+      <div id="journalEntryDetails"></div>
+    </section>
+
+    <script src="js/daily-journal.js"></script>
+  </body>
+</html>

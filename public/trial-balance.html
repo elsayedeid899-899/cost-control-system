@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ميزان المراجعة</title>
+  </head>
+  <body>
+    <section class="card">
+      <h2>فلاتر ميزان المراجعة</h2>
+      <div class="compact-form-grid wide">
+        <div>
+          <label for="branch_id">الفرع</label>
+          <select id="branch_id"></select>
+        </div>
+        <div>
+          <label for="date_from">من تاريخ</label>
+          <input id="date_from" type="date" />
+        </div>
+        <div>
+          <label for="date_to">إلى تاريخ</label>
+          <input id="date_to" type="date" />
+        </div>
+        <div class="filters-inline">
+          <button type="button" onclick="loadTrialBalance()">تحديث الميزان</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>ملخص ميزان المراجعة</h2>
+      <div class="summary-banner" id="trialBalanceSummary"></div>
+    </section>
+
+    <section class="card">
+      <h2>حسابات الميزان</h2>
+      <div class="table-shell" id="trialBalanceTable"></div>
+    </section>
+
+    <script src="js/trial-balance.js"></script>
+  </body>
+</html>

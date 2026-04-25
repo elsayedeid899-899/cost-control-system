@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>انحراف المخزون</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background: #f4f6f9;
+        padding: 30px;
+      }
+
+      .card {
+        background: white;
+        border-radius: 14px;
+        padding: 24px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        margin-bottom: 24px;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        margin-bottom: 18px;
+        align-items: end;
+      }
+
+      input,
+      select {
+        padding: 12px;
+        border: 1px solid #cbd5e1;
+        border-radius: 8px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      button {
+        background: #243b53;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h2>فلاتر انحراف المخزون</h2>
+      <div class="grid">
+        <select id="stock_count_id"></select>
+        <input id="date_from" type="date" />
+        <button onclick="loadStockVariance()">تحديث التقرير</button>
+      </div>
+      <div id="varianceSessionSummary"></div>
+    </div>
+
+    <div class="card">
+      <h2>تقرير انحراف المخزون</h2>
+      <div id="stockVarianceTable"></div>
+    </div>
+
+    <script src="js/stock-variance.js"></script>
+  </body>
+</html>

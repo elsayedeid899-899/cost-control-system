@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>الميزانية العمومية</title>
+  </head>
+  <body>
+    <section class="card">
+      <h2>فلاتر الميزانية العمومية</h2>
+      <div class="compact-form-grid wide">
+        <div>
+          <label for="branch_id">الفرع</label>
+          <select id="branch_id"></select>
+        </div>
+        <div>
+          <label for="as_of_date">حتى تاريخ</label>
+          <input id="as_of_date" type="date" />
+        </div>
+        <div class="filters-inline">
+          <button type="button" onclick="loadBalanceSheet()">تحديث الميزانية</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>ملخص الميزانية العمومية</h2>
+      <div class="summary-banner" id="balanceSheetSummary"></div>
+    </section>
+
+    <section class="card">
+      <h2>الأصول</h2>
+      <div class="table-shell" id="assetsTable"></div>
+    </section>
+
+    <section class="card">
+      <h2>الالتزامات</h2>
+      <div class="table-shell" id="liabilitiesTable"></div>
+    </section>
+
+    <section class="card">
+      <h2>حقوق الملكية</h2>
+      <div class="table-shell" id="equityTable"></div>
+    </section>
+
+    <script src="js/balance-sheet.js"></script>
+  </body>
+</html>

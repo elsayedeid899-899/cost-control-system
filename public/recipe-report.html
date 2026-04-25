@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>تقرير الريسبيات</title>
+  </head>
+  <body>
+    <section class="card">
+      <h2>فلاتر تقرير الريسبيات</h2>
+      <p class="card-section-note">
+        يعرض التقرير جميع الأصناف التي تستخدم ريسبي، سواء كانت منتجات تامة أو نصف مصنعة، مع
+        مكونات كل ريسبي والفرع المستخدم لها. إذا كان نفس الصنف له ريسبي مختلفة حسب الفروع
+        فسيظهر أكثر من مرة بشكل منفصل.
+      </p>
+      <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));">
+        <div>
+          <label for="branch_id">الفرع</label>
+          <select id="branch_id"></select>
+        </div>
+        <button type="button" onclick="loadRecipeReport()">تحديث التقرير</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>مؤشرات تقرير الريسبيات</h2>
+      <div class="metric-grid" id="recipeReportSummary"></div>
+    </section>
+
+    <section class="card">
+      <h2>تفاصيل الأصناف والريسبيات</h2>
+      <p class="card-section-note">
+        يمكن تصدير هذا الجدول إلى Excel أو PDF من شريط التصدير أعلى الصفحة.
+      </p>
+      <div id="recipeReportTable"></div>
+    </section>
+
+    <script src="js/recipe-report.js"></script>
+  </body>
+</html>
