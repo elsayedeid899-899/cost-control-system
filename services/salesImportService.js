@@ -1,8 +1,5 @@
-const fs = require('fs/promises');
 const path = require('path');
-const os = require('os');
-const { randomUUID } = require('crypto');
-const { FileBlob, SpreadsheetFile } = require('@oai/artifact-tool');
+const XLSX = require('xlsx');
 
 const TEMPLATE_SHEET_NAME = 'SalesImportTemplate';
 const TEMPLATE_HEADERS = [
