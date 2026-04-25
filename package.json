@@ -16,7 +16,8 @@
   "type": "commonjs",
   "dependencies": {
     "express": "^5.2.1",
-    "sqlite3": "^5.1.7"
+    "sqlite3": "^5.1.7",
+    "xlsx": "^0.18.5"
   },
   "engines": {
     "node": "20.x"
