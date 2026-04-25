@@ -1,0 +1,25 @@
+{
+  "businessName": "Cost Control System - Demo Edition",
+  "appearance": {
+    "theme": "forest-ledger",
+    "density": "compact",
+    "fontScale": 0.94
+  },
+  "reports": {
+    "pdfOrientation": "landscape",
+    "defaultExcelSheetName": "Report"
+  },
+  "experience": {
+    "showQuickTips": true,
+    "pinFilters": true
+  },
+  "security": {
+    "operatorName": "Demo User"
+  },
+  "backups": {
+    "dailyBackupEnabled": true,
+    "dailyBackupTime": "02:00",
+    "keepDays": 30
+  },
+  "updatedAt": "2026-04-23T18:25:12.375Z"
+}
