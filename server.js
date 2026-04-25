@@ -162,8 +162,6 @@ app.use('/api/settings', require('./routes/settings'));
 app.use('/api/exports', require('./routes/exports'));
 app.use('/api/analytics', require('./routes/analytics'));
 
-const server = http.createServer(app);
-
 db.ready
   .then(async () => {
     await syncAllFinishedProductCostSnapshots();
@@ -178,6 +176,5 @@ db.ready
   })
   .catch((err) => {
     console.error("Startup error:", err);
+    process.exit(1);
   });
-
-module.exports = server;
