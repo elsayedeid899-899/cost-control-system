@@ -161,6 +161,7 @@ app.use('/api/stock-operations', require('./routes/stockOperations'));
 app.use('/api/settings', require('./routes/settings'));
 app.use('/api/exports', require('./routes/exports'));
 app.use('/api/analytics', require('./routes/analytics'));
+const server = http.createServer(app);
 
 db.ready
   .then(async () => {
