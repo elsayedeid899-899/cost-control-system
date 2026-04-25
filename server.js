@@ -169,14 +169,15 @@ db.ready
     await syncAllFinishedProductCostSnapshots();
     await rebuildAllJournalEntries();
     startDailyBackupScheduler();
+
     const PORT = process.env.PORT || 3001;
 
-server.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-}); 
+    server.listen(PORT, "0.0.0.0", () => {
+      console.log(`Server running on port ${PORT}`);
+    });
+  })
   .catch((err) => {
-    console.error('Unable to start server:', err.message);
-    process.exit(1);
+    console.error("Startup error:", err);
   });
 
 module.exports = server;
